@@ -20,27 +20,29 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 		this.setDoubleBuffered(true);
 		this.setFocusable(true);
 
-		gameThread = new Thread(); // initializing the thread
+		gameThread = new Thread(this); // initializing the thread
 		gameThread.start();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+	if(gameThread!=null){
 		if(currentLevel != null) {
-			currentLevel.render(g);
+			currentLevel.render(g);	
 		}
+	}
 		g.dispose();
 	}
 
 	@Override
 	public void run() {
 		
+		LevelManager.loadLevels();
 		double drawInterval = 1000000000 / FPS;
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int drawCount = 0;
-        LevelManager.loadLevels();
 		currentLevel = LevelManager.getLevel(0);
 		currentLevel.loadMap();
         start();
@@ -60,18 +62,19 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 				drawCount++;
 			}
 			if (timer >= 1000000000) {
-				// System.out.println("FPS"+drawCount);
+				 System.out.println("FPS: "+drawCount);
 				drawCount = 0;
 				timer = 0;
 			}
 		}
+		//System.out.println("kk");
 		LevelManager.saveLevels();
 	}
 
 	public void start() { // here game can be initialized
-//		if(currentLevel != null) {
+		if(currentLevel != null) {
 			currentLevel.start();
-//		}
+		}
 		
 	}
 

@@ -42,8 +42,11 @@ public class Level {
 	}
 		
 	public void render(Graphics g) {
-	    
-		p1.render(g);
+
+		if(p1!=null) {
+			p1.render(g);	
+		}
+		
 		int col =0;
 		int row=0;
 						
