@@ -6,8 +6,8 @@ public class Program {
 
 	public static void main(String[] args) {
 		new Game();
-		LevelManager.saveLevels();
-		LevelManager.loadLevels();
+//		LevelManager.saveLevels();
+//		LevelManager.loadLevels();
 	}
 
 }
