@@ -1,5 +1,6 @@
 package level;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,9 +8,57 @@ import java.io.InputStreamReader;
 import LegendOfZelvi.Game_Panel;
 
 public class Level {
-	private int[][] map;
+	private transient int[][] map;
 	public String mapLocation;
-
+    
+	
+	
+	public void start() {
+		int col =0;
+		int row=0;
+						
+		while(col<Game_Panel.maxScreenCol&&row<Game_Panel.maxScreenRow) {
+		
+			while(col<Game_Panel.maxScreenCol) {
+					 
+				int worldX=col*30;
+				int worldY=row*30;
+				//	  g.drawImage(tiles[map[col][row]].image, worldX, worldY, 30, 30,  null); 	
+				col++;
+			}
+				
+			if(col==Game_Panel.maxScreenCol) {
+				col=0;
+				row++;
+			}			
+		}
+	}
+	
+	public void update() {
+		
+	}
+		
+	public void render(Graphics g) {
+	    
+		int col =0;
+		int row=0;
+						
+		while(col<Game_Panel.maxScreenCol&&row<Game_Panel.maxScreenRow) {
+		
+			while(col<Game_Panel.maxScreenCol) {					 
+				int worldX=col*30;
+				int worldY=row*30;
+				//	  g.drawImage(tiles[map[col][row]].image, worldX, worldY, 30, 30,  null); 
+				col++;
+			}
+				
+			if(col==Game_Panel.maxScreenCol) {
+				col=0;
+				row++;
+			}			
+		}
+	}	
+	
 	public void loadMap() {
 		try {
 			map = new int[Game_Panel.maxScreenCol][Game_Panel.maxScreenRow];

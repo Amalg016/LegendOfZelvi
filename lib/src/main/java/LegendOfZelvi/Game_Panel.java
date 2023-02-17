@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import level.LevelManager;
+
 public class Game_Panel extends JPanel implements Runnable { // class for panel
 	public static final int maxScreenCol = 18;
 	public static final int maxScreenRow = 9;
@@ -34,7 +36,7 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int drawCount = 0;
-
+        //LevelManager.loadLevels();
 		start();
 		while (gameThread != null) {
 			Time.time = System.nanoTime();
@@ -56,6 +58,7 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 				timer = 0;
 			}
 		}
+		LevelManager.saveLevels();
 	}
 
 	public void start() { // here game can be initialized
