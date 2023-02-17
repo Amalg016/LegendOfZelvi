@@ -17,7 +17,7 @@ public class LevelManager {
 
 	
 	
-	public static Level getLevel(int i) {
+	public Level getLevel(int i) {
 		int c=0;
 		for(Map.Entry<String,Level> e:levels.entrySet()) {
 			if(c==i) {
@@ -27,7 +27,7 @@ public class LevelManager {
 		}
 		return null;
 	}
-	public static Level getLevel(String i) {
+	public Level getLevel(String i) {
 		if(levels.containsKey(i)) {
 			return levels.get(i);
 		}

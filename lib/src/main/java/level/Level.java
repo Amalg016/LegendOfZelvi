@@ -6,17 +6,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import LegendOfZelvi.Game_Panel;
-import gameobjects.Player;
 
 public class Level {
 	private transient int[][] map;
 	public String mapLocation;
-    transient Player p1;
+    
 	
 	
 	public void start() {
-		p1 = new Player(400,400);
-		p1.start();
 		int col =0;
 		int row=0;
 						
@@ -38,12 +35,11 @@ public class Level {
 	}
 	
 	public void update() {
-		p1.update();
+		
 	}
 		
 	public void render(Graphics g) {
 	    
-		p1.render(g);
 		int col =0;
 		int row=0;
 						
