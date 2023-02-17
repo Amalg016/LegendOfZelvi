@@ -38,13 +38,12 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 	@Override
 	public void run() {
 		
-		LevelManager.loadLevels();
 		double drawInterval = 1000000000 / FPS;
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int drawCount = 0;
-		currentLevel = LevelManager.getLevel(0);
-		currentLevel.loadMap();
+		
+		load();
         start();
         
 		while (gameThread != null) {
@@ -69,6 +68,12 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 		}
 		//System.out.println("kk");
 		LevelManager.saveLevels();
+	}
+	
+	public void load() {
+		LevelManager.loadLevels();
+		currentLevel = LevelManager.getLevel(0);
+		currentLevel.loadMap();
 	}
 
 	public void start() { // here game can be initialized
