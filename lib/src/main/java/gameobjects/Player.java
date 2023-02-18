@@ -2,13 +2,17 @@ package gameobjects;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import LegendOfZelvi.AssetPool;
 import LegendOfZelvi.GameObject;
 public class Player extends GameObject {
 
+	private BufferedImage source;
+	
 	public Player() {
 		super();
 	}
@@ -23,11 +27,11 @@ public class Player extends GameObject {
 	
 	@Override
 	public void start() {
-		System.out.println("hi");
-		InputStream is=getClass().getResourceAsStream("/Assets/Images/Zelvi.png");
 	     try{
-	    	 image=ImageIO.read(is);
-//	    	 AssetPool.spritesheets.put("spritesheet1",ImageIO.read(is)); 	 
+	    	 
+	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
+	    	image=source.getSubimage(0, 22, 25, 25);
+	    	image.coerceData(false);
 	     }catch(Exception e) {
 	    	 e.printStackTrace();	     }  
 	}

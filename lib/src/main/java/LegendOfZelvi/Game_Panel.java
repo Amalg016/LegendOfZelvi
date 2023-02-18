@@ -71,6 +71,7 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 	}
 	
 	public void load() {
+		new AssetPool();
 		LevelManager.loadLevels();
 		currentLevel = LevelManager.getLevel(0);
 		currentLevel.loadMap();
