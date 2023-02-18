@@ -29,8 +29,7 @@ public class Player extends GameObject {
 	    	 image=ImageIO.read(is);
 //	    	 AssetPool.spritesheets.put("spritesheet1",ImageIO.read(is)); 	 
 	     }catch(Exception e) {
-	    	 System.out.println(e);
-	     }  
+	    	 e.printStackTrace();	     }  
 	}
 	
 	@Override
