@@ -12,7 +12,7 @@ public class AssetPool {
 	public static Map<String,BufferedImage> spritesheets=new HashMap();
 
 	public AssetPool() {
-		 InputStream is=getClass().getResourceAsStream("/Assets/images/Zelvi.png");
+		 InputStream is=getClass().getResourceAsStream("/Assets/images/Zelvi1.png");
 	     try{
 	    	 
 	    	 AssetPool.spritesheets.put("spritesheet1",ImageIO.read(is)); 	 

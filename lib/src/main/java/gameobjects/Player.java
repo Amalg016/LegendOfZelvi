@@ -30,7 +30,7 @@ public class Player extends GameObject {
 	     try{
 	    	 
 	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
-	    	image=source.getSubimage(0, 22, 25, 25);
+	    	image=source.getSubimage(0, 0, 25, 25);
 	    	image.coerceData(false);
 	     }catch(Exception e) {
 	    	 e.printStackTrace();	     }  
