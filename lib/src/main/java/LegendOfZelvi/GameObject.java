@@ -37,7 +37,7 @@ public class GameObject {
 	
 	public void render(Graphics g) {
 		if(image != null) {
-			g.drawImage(image, x, y, Game_Panel.tileSize, Game_Panel.tileSize, null);
+			g.drawImage(image, x, y, Game.tileSize, Game.tileSize, null);
 		}
 		else {
 			g.setColor(Color.BLUE);

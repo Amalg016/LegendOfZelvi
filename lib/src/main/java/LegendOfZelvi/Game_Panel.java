@@ -8,11 +8,8 @@ import level.Level;
 import level.LevelManager;
 
 public class Game_Panel extends JPanel implements Runnable { // class for panel
-	public static final int maxScreenCol = 18;
-	public static final int maxScreenRow = 9;
 	Thread gameThread;
 	final int FPS = 60;
-	public static final int tileSize = 30;
 	public Level currentLevel;
 
 	public Game_Panel() {
@@ -27,11 +24,12 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	if(gameThread!=null){
-		if(currentLevel != null) {
-			currentLevel.render(g);	
+	
+		if(gameThread!=null){
+			if(currentLevel != null) {
+				currentLevel.render(g);	
+			}
 		}
-	}
 		g.dispose();
 	}
 
@@ -61,7 +59,7 @@ public class Game_Panel extends JPanel implements Runnable { // class for panel
 				drawCount++;
 			}
 			if (timer >= 1000000000) {
-				 System.out.println("FPS: "+drawCount);
+				// System.out.println("FPS: "+drawCount);
 				drawCount = 0;
 				timer = 0;
 			}
