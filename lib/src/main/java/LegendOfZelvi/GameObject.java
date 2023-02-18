@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class GameObject {
 	public int x,y;
-	BufferedImage image;
+	protected BufferedImage image;
 	Rectangle collider;
 	
 	public GameObject() {
