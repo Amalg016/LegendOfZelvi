@@ -39,14 +39,14 @@ public class Player extends GameObject {
 	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
 	    	image=source.getSubimage(3, 1, 16, 22);
 	    	
-	    		downWalk[1]=source.getSubimage(3,31,16,22);
-	    		downWalk[2]=source.getSubimage(33,31,16,22);
-	    		downWalk[3]=source.getSubimage(63,30,16,23);
-	    		downWalk[4]=source.getSubimage(93,30,16,24);
-	    		downWalk[5]=source.getSubimage(123,31,16,22);
-	    		downWalk[6]=source.getSubimage(153,30,16,23);
-	    		downWalk[7]=source.getSubimage(183,30,16,23);
-	    		downWalk[8]=source.getSubimage(213,30,16,24);
+	    		downWalk[0]=source.getSubimage(3,31,16,22);
+	    		downWalk[1]=source.getSubimage(33,31,16,22);
+	    		downWalk[2]=source.getSubimage(63,30,16,23);
+	    		downWalk[3]=source.getSubimage(93,30,16,24);
+	    		downWalk[4]=source.getSubimage(123,31,16,22);
+	    		downWalk[5]=source.getSubimage(153,30,16,23);
+	    		downWalk[6]=source.getSubimage(183,30,16,23);
+	    		downWalk[7]=source.getSubimage(213,30,16,24);
 
 
 	     }catch(Exception e) {
