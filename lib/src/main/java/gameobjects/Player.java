@@ -13,6 +13,7 @@ import LegendOfZelvi.GameObject;
 public class Player extends GameObject {
 
 	private BufferedImage source;
+	private BufferedImage[] currentAnim;
 	private BufferedImage[] downWalk;
 	private float timeTracker;
 	private int state=0;
@@ -33,12 +34,16 @@ public class Player extends GameObject {
 	
 	@Override
 	public void start() {
+		loadImages();
+	}
+	public void loadImages() {
 	     try{
 	    	 downWalk=new BufferedImage[8];
-	    	
+	    	 currentAnim=downWalk;
 	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
 	    	image=source.getSubimage(3, 1, 16, 22);
-	    	
+	  
+	    	//Walking down
 	    		downWalk[0]=source.getSubimage(3,31,16,22);
 	    		downWalk[1]=source.getSubimage(33,31,16,22);
 	    		downWalk[2]=source.getSubimage(63,30,16,23);
@@ -47,31 +52,34 @@ public class Player extends GameObject {
 	    		downWalk[5]=source.getSubimage(153,30,16,23);
 	    		downWalk[6]=source.getSubimage(183,30,16,23);
 	    		downWalk[7]=source.getSubimage(213,30,16,24);
-
-
+	     //Walking up
+	    		
 	     }catch(Exception e) {
 	    	 e.printStackTrace();	     }  
 	}
+	
 	public void updateAnim() {
 		   timeTracker -= Time.dt;
-			if(state!=lastState) {currentIndex=0;}
-			    if(timeTracker <= 0)
-		        {
-		          lastState=state;
-				if (currentIndex < downWalk.length-1)
-		          {
+			
+		   if(state!=lastState) {currentIndex=0;}
+
+		   if(timeTracker <= 0)
+		   {
+			         lastState=state;
+			   if (currentIndex < currentAnim.length-1)
+		       {
 		              currentIndex++;
-		          }
-		          else if(currentIndex==downWalk.length-1)
-		          {
-		               currentIndex=(currentIndex+1)%downWalk.length;
-		          }
-		        timeTracker=10; 
-				image= downWalk[currentIndex]; 
-				if(state==1&&currentIndex==1) {
-					state=0;
-				}
-		        }    
+		       }
+			   else if(currentIndex==currentAnim.length-1)
+			   {
+		               currentIndex=(currentIndex+1)%currentAnim.length;
+			   }
+		          timeTracker=10; 
+		          image= currentAnim[currentIndex]; 
+		       if(state==1&&currentIndex==1) {
+		        	  state=0;
+		       }
+		   }     
 	  }
 	  
 	
