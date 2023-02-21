@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import LegendOfZelvi.AssetPool;
 import LegendOfZelvi.Game;
 import LegendOfZelvi.GameObject;
+import LegendOfZelvi.InputManager;
 
 public class Player extends GameObject {
 
@@ -23,6 +24,7 @@ public class Player extends GameObject {
 	private int state=0;
 	private int lastState;
 	private int currentIndex;
+	public int speed = 2;
 	
 	public Player() {
 		super();
@@ -117,7 +119,24 @@ public class Player extends GameObject {
 	@Override
 	public void update() {
 		updateAnim();
-		y+=1;
+//		y+=1;
+		if(InputManager.upPressed) {
+			y -= speed;
+		}
+		
+		if(InputManager.downPressed) {
+			y += speed;
+		}
+		
+		if(InputManager.rightPressed) {
+			x += speed;
+		}
+		
+		if(InputManager.leftPressed) {
+			x -= speed;
+		}
+		
+		
 		if(y>Game.maxScreenRow*30) {
 			y=0;
 		}
