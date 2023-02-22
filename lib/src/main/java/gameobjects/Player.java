@@ -20,6 +20,10 @@ public class Player extends GameObject {
 	private BufferedImage[] upWalk;
 	private BufferedImage[] leftWalk;
 	private BufferedImage[] rightWalk;
+	
+	private BufferedImage[] downAttack;
+	
+	
 	private float timeTracker;
 	private int state=0;
 	private int lastState;
@@ -48,7 +52,8 @@ public class Player extends GameObject {
 	    	 upWalk=new BufferedImage[8];
 	    	 rightWalk=new BufferedImage[6];
 	    	 leftWalk=new BufferedImage[6];
-	    	 currentAnim=downWalk;
+	    	 downAttack=new BufferedImage[6];
+	    	 currentAnim=downAttack;
 	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
 	    	image=source.getSubimage(3, 1, 16, 22);
 	  
@@ -78,15 +83,20 @@ public class Player extends GameObject {
 	    		rightWalk[4]=source.getSubimage(361, 120, 19, 24);
 	    		rightWalk[5]=source.getSubimage(392, 120, 18, 24);
 		//lefttwalk
-		leftWalk[0]=source.getSubimage(241, 30, 19, 24);
-		leftWalk[1]=source.getSubimage(272, 30, 18, 24);
-		leftWalk[2]=source.getSubimage(301, 30, 19, 23);
-		leftWalk[3]=source.getSubimage(331, 30, 19, 23);
-		leftWalk[4]=source.getSubimage(361, 30, 19, 24);
-		leftWalk[5]=source.getSubimage(392, 30, 18, 24);
+		        leftWalk[0]=source.getSubimage(241, 30, 19, 24);
+		        leftWalk[1]=source.getSubimage(272, 30, 18, 24);
+	        	leftWalk[2]=source.getSubimage(301, 30, 19, 23);
+		        leftWalk[3]=source.getSubimage(331, 30, 19, 23);
+		        leftWalk[4]=source.getSubimage(361, 30, 19, 24);
+		        leftWalk[5]=source.getSubimage(392, 30, 18, 24);
 
-
-	    		
+		        //downAttack
+		        downAttack[0]=source.getSubimage(0,85,28 ,31);
+		        downAttack[1]=source.getSubimage(27,85,28 ,31);
+		        downAttack[2]=source.getSubimage(58,86, 28,31);
+		        downAttack[3]=source.getSubimage(87,86, 28,31);
+		        downAttack[4]=source.getSubimage(115,86,28 ,31);
+		        downAttack[5]=source.getSubimage(146,86,28 ,31);
 	     }catch(Exception e) {
 	    	 e.printStackTrace();	     }  
 	}
@@ -107,7 +117,7 @@ public class Player extends GameObject {
 			   {
 		               currentIndex=(currentIndex+1)%currentAnim.length;
 			   }
-		          timeTracker=10; 
+		          timeTracker=15; 
 		          image= currentAnim[currentIndex]; 
 //		       if(state==1 && currentIndex==1) {
 //		        	  state=0;
@@ -124,29 +134,29 @@ public class Player extends GameObject {
 //			currentIndex = 0;
 //		}
 		
-		if(InputManager.upPressed || InputManager.downPressed || 
-				InputManager.rightPressed || InputManager.leftPressed) {
+//		if(InputManager.upPressed || InputManager.downPressed || 
+//				InputManager.rightPressed || InputManager.leftPressed) {
 			updateAnim();
-		}
+//		}
 		if(InputManager.upPressed) {
 			y -= speed;
 			currentAnim = upWalk;
 			state = 1;
 		}
 		
-		if(InputManager.downPressed) {
+		else if(InputManager.downPressed) {
 			y += speed;
 			currentAnim = downWalk;
 			state = 2;
 		}
 		
-		if(InputManager.rightPressed) {
+		else if(InputManager.rightPressed) {
 			x += speed;
 			currentAnim = rightWalk;
 			state = 3;
 		}
 		
-		if(InputManager.leftPressed) {
+		else if(InputManager.leftPressed) {
 			x -= speed;
 			currentAnim = leftWalk;
 			state = 4;

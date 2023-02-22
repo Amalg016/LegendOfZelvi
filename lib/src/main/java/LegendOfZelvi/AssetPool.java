@@ -14,9 +14,11 @@ public class AssetPool {
 	public AssetPool() {
 		 InputStream is=getClass().getResourceAsStream("/Assets/images/Zelvi1.png");
 		 InputStream map=getClass().getResourceAsStream("/Assets/images/map1sp.png");
+		 InputStream enemy1=getClass().getResourceAsStream("/Assets/images/enemy1.png");
 		 try{
 			 AssetPool.spritesheets.put("spritesheet1",ImageIO.read(is)); 	 
 			 AssetPool.spritesheets.put("spritesheet2",ImageIO.read(map)); 	 
+			 AssetPool.spritesheets.put("spritesheet3",ImageIO.read(enemy1)); 	 
 	    	 
 	     }catch(Exception e) {
 	    	 System.out.println(e);

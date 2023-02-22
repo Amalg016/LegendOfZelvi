@@ -10,6 +10,7 @@ import LegendOfZelvi.AssetPool;
 import LegendOfZelvi.Game;
 import LegendOfZelvi.Game_Panel;
 import gameobjects.Player;
+import gameobjects.enemy1;
 
 public class Level {
 	private transient int[][] map;
@@ -18,11 +19,12 @@ public class Level {
 	
    transient BufferedImage image1;
    transient BufferedImage image2;
-   
+   transient enemy1 e;
 	public void start() {
 		p1 = new Player(200,200);
 		p1.start();
-		
+		e=new enemy1(300,300);
+		e.start();
 
 		BufferedImage source= AssetPool.spritesheets.get("spritesheet2"); 	 
 //		image=source.getSubimage(100,1200, 25, 25);
@@ -53,6 +55,7 @@ public class Level {
 	
 	public void update() {
 		p1.update();
+		e.update();
 	}
 		
 	public void render(Graphics g) {
@@ -82,9 +85,10 @@ public class Level {
 				row++;
 			}			
 		}
-		if(p1!=null) {
-			p1.render(g);	
-		}
+		//if(p1!=null) {
+			p1.render(g);		
+			e.render(g);
+		//}
 	}	
 	
 	public void loadMap() {
