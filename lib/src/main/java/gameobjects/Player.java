@@ -109,32 +109,49 @@ public class Player extends GameObject {
 			   }
 		          timeTracker=10; 
 		          image= currentAnim[currentIndex]; 
-		       if(state==1&&currentIndex==1) {
-		        	  state=0;
-		       }
+//		       if(state==1 && currentIndex==1) {
+//		        	  state=0;
+//		       }
 		   }     
 	  }
 	  
 	
 	@Override
 	public void update() {
-		updateAnim();
-//		y+=1;
+		
+//		if(!InputManager.upPressed || !InputManager.downPressed || 
+//				!InputManager.rightPressed || !InputManager.leftPressed) {
+//			currentIndex = 0;
+//		}
+		
+		if(InputManager.upPressed || InputManager.downPressed || 
+				InputManager.rightPressed || InputManager.leftPressed) {
+			updateAnim();
+		}
 		if(InputManager.upPressed) {
 			y -= speed;
+			currentAnim = upWalk;
+			state = 1;
 		}
 		
 		if(InputManager.downPressed) {
 			y += speed;
+			currentAnim = downWalk;
+			state = 2;
 		}
 		
 		if(InputManager.rightPressed) {
 			x += speed;
+			currentAnim = rightWalk;
+			state = 3;
 		}
 		
 		if(InputManager.leftPressed) {
 			x -= speed;
+			currentAnim = leftWalk;
+			state = 4;
 		}
+		
 		
 		
 		if(y>Game.maxScreenRow*30) {
