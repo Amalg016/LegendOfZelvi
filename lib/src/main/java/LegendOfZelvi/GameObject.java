@@ -9,6 +9,11 @@ public class GameObject {
 	public int x,y;
 	protected BufferedImage image;
 	Rectangle collider;
+	//Directions
+	protected final int down=0,up=1,right=2,left=3;
+	
+	//Animation types
+	protected final int idle=0,attack=1;	
 	
 	public GameObject() {
 		x = 0;
@@ -37,7 +42,7 @@ public class GameObject {
 	
 	public void render(Graphics g) {
 		if(image != null) {
-			g.drawImage(image, x, y, Game.tileSize, Game.tileSize, null);
+			g.drawImage(image, x, y, image.getWidth(), image.getHeight(), null);
 		}
 		else {
 			g.setColor(Color.BLUE);

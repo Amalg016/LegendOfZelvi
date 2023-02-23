@@ -4,29 +4,44 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Animations.Animation;
 import LegendOfZelvi.AssetPool;
 import LegendOfZelvi.Game;
 import LegendOfZelvi.GameObject;
 import LegendOfZelvi.InputManager;
 
+
 public class Player extends GameObject {
 
 	private BufferedImage source;
-	private BufferedImage[] currentAnim;
+	private Animation currentAnim;
+	private Animation lastAnim;
 	private BufferedImage[] downWalk;
 	private BufferedImage[] upWalk;
 	private BufferedImage[] leftWalk;
 	private BufferedImage[] rightWalk;
 	
 	private BufferedImage[] downAttack;
+	Animation downWalkAnim;
+	Animation upWalkAnim;
+	Animation leftWalkAnim;
+	Animation rightWalkAnim;
+	Animation downAttackAnim;
 	
+	int currentDir=down;
+	int currentState=idle;
 	
+	Animation[] walkAnims;
+	Animation[] attackAnims;
+	
+	ArrayList<Animation[]> animations=new ArrayList<Animation[]>();
 	private float timeTracker;
 	private int state=0;
-	private int lastState;
+	private int lastState=0;
 	private int currentIndex;
 	public int speed = 2;
 	
@@ -53,7 +68,6 @@ public class Player extends GameObject {
 	    	 rightWalk=new BufferedImage[6];
 	    	 leftWalk=new BufferedImage[6];
 	    	 downAttack=new BufferedImage[6];
-	    	 currentAnim=downAttack;
 	    	source= AssetPool.spritesheets.get("spritesheet1"); 	 
 	    	image=source.getSubimage(3, 1, 16, 22);
 	  
@@ -97,31 +111,71 @@ public class Player extends GameObject {
 		        downAttack[3]=source.getSubimage(87,86, 28,31);
 		        downAttack[4]=source.getSubimage(115,86,28 ,31);
 		        downAttack[5]=source.getSubimage(146,86,28 ,31);
+		        
+		       
+		     
+		     walkAnims=new Animation[4];
+		     
+		     upWalkAnim=new Animation();
+		     upWalkAnim.clip=upWalk;
+		     walkAnims[up]=upWalkAnim;
+		  
+		     downWalkAnim=new Animation();
+		     downWalkAnim.clip=downWalk;
+		     walkAnims[down]=downWalkAnim;
+		     
+		     rightWalkAnim=new Animation();
+		     rightWalkAnim.clip=rightWalk;
+		     walkAnims[right]=rightWalkAnim;
+		     
+		     leftWalkAnim=new Animation();
+		     leftWalkAnim.clip=leftWalk;
+		     walkAnims[left]=leftWalkAnim;
+		     
+		     
+		     attackAnims=new Animation[1];
+		     downAttackAnim=new Animation();
+		     downAttackAnim.clip=downAttack;
+		     downAttackAnim.time=6;  
+		     downAttackAnim.loop=false;
+		     
+		     attackAnims[down]=downAttackAnim;
+		     
+		     
+		     animations.add(walkAnims); 
+		     animations.add(attackAnims); 
+
+		         currentState=attack;
+		        
 	     }catch(Exception e) {
 	    	 e.printStackTrace();	     }  
 	}
 	
 	public void updateAnim() {
+		currentAnim=animations.get(currentState)[currentDir];
+		if(currentAnim==null)return;
 		   timeTracker -= Time.dt;
 			
-		   if(state!=lastState) {currentIndex=0;}
+		   if(currentAnim!=lastAnim) {currentIndex=0;}
 
 		   if(timeTracker <= 0)
 		   {
-			         lastState=state;
-			   if (currentIndex < currentAnim.length-1)
+			   lastAnim=currentAnim;
+			   if (currentIndex < currentAnim.clip.length-1)
 		       {
 		              currentIndex++;
 		       }
-			   else if(currentIndex==currentAnim.length-1)
+			   else if(currentIndex==currentAnim.clip.length-1)
 			   {
-		               currentIndex=(currentIndex+1)%currentAnim.length;
+		               currentIndex=(currentIndex+1)%currentAnim.clip.length;
 			   }
-		          timeTracker=15; 
-		          image= currentAnim[currentIndex]; 
-//		       if(state==1 && currentIndex==1) {
-//		        	  state=0;
-//		       }
+		          timeTracker=currentAnim.time; 
+		        
+		          image= currentAnim.clip[currentIndex]; 
+
+		          if(!currentAnim.loop&&currentIndex==currentAnim.clip.length-1) {
+		          currentState=idle;
+		       }
 		   }     
 	  }
 	  
@@ -138,27 +192,36 @@ public class Player extends GameObject {
 //				InputManager.rightPressed || InputManager.leftPressed) {
 			updateAnim();
 //		}
+			
+			if(InputManager.spacePressed) {
+				currentState=attack;
+			}
 		if(InputManager.upPressed) {
 			y -= speed;
-			currentAnim = upWalk;
+			//currentAnim = upWalkAnim;
+		
+			currentDir=up;		
 			state = 1;
 		}
 		
 		else if(InputManager.downPressed) {
 			y += speed;
-			currentAnim = downWalk;
+			//currentAnim = downWalkAnim;
+			currentDir=down;
 			state = 2;
 		}
 		
 		else if(InputManager.rightPressed) {
 			x += speed;
-			currentAnim = rightWalk;
+			//currentAnim = rightWalkAnim;
+			currentDir=right;
 			state = 3;
 		}
 		
 		else if(InputManager.leftPressed) {
 			x -= speed;
-			currentAnim = leftWalk;
+		//	currentAnim = leftWalkAnim;
+			currentDir=left;
 			state = 4;
 		}
 		

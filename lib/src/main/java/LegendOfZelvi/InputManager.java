@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 public class InputManager extends KeyAdapter {
 	
-	public static boolean upPressed, downPressed, leftPressed, rightPressed;
+	public static boolean upPressed, downPressed, leftPressed, rightPressed,spacePressed;
 	
 //	@Override
 //	public void keyTyped(KeyEvent e) {
@@ -27,6 +27,9 @@ public class InputManager extends KeyAdapter {
 		case KeyEvent.VK_D:
 			rightPressed = true;
 			break;
+		case KeyEvent.VK_SPACE:
+			spacePressed = true;
+			break;
 		}
 	}
 
@@ -45,6 +48,9 @@ public class InputManager extends KeyAdapter {
 		case KeyEvent.VK_D:
 			rightPressed = false;
 			break;
+		case KeyEvent.VK_SPACE:
+			spacePressed = false;
+			break;	
 		}
 	}
 
