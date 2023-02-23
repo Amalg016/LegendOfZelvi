@@ -136,7 +136,7 @@ public class Player extends GameObject {
 		     attackAnims=new Animation[1];
 		     downAttackAnim=new Animation();
 		     downAttackAnim.clip=downAttack;
-		     downAttackAnim.time=6;  
+		     //downAttackAnim.time=;  
 		     downAttackAnim.loop=false;
 		     
 		     attackAnims[down]=downAttackAnim;
@@ -199,7 +199,6 @@ public class Player extends GameObject {
 		if(InputManager.upPressed) {
 			y -= speed;
 			//currentAnim = upWalkAnim;
-		
 			currentDir=up;		
 			state = 1;
 		}

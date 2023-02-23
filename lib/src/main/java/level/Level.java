@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import LegendOfZelvi.AssetPool;
 import LegendOfZelvi.Game;
 import LegendOfZelvi.Game_Panel;
+import LegendOfZelvi.InputManager;
 import gameobjects.Player;
 import gameobjects.enemy1;
 
@@ -59,8 +60,9 @@ public class Level {
 	}
 		
 	public void render(Graphics g) {
-
+//		g.translate(-p1.x+Game.maxScreenWidth/2,-p1.y+Game.maxScreenheight/2);	
 		
+
 		if(image1==null)return;
 		int col =0;
 		int row=0;
